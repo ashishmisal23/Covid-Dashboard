@@ -51,10 +51,10 @@ const Dashboard = () => {
                 onSelectingDateRange={(startDate, endDate) => { calculateDays(startDate, endDate) }}
             />
             <div className='flex flex-row flex-auto	 gap-2 align-middle w-full max-w-screen-2xl'>
-                <div className="max-w-48 order-1	">
+                <div className="max-w-36">
                     <Chart data={data} loading={loading} />
                 </div>
-                <div className="max-w-48 order-2	">
+                <div className="max-w-36">
                     <Chart data={data} loading={loading} />
                 </div>
             </div>
