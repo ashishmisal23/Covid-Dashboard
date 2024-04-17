@@ -1,13 +1,52 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.charts-container {
+    display: inline-flex;
+    width: 90vw;
+    min-height: 30vh;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.chart-container {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    max-height: 25vh;
+    min-width: 40vw;
+    margin: 1rem;
+}
+
+.chart {
+    max-height: 25vh;
+    min-width: 40vw;
+}
+
+.msg {
+    font-size: larger;
+    font-weight: 600;
+    color: red;
+    animation-name: anime1;
+    animation-duration: 4s;
+}
+
+@keyframes anime1 {
+    0% {
+        color: red;
+    }
+
+    25% {
+        color: yellow;
+    }
+
+    50% {
+        color: blue;
+    }
+
+    100% {
+        color: green;
+    }
 }
