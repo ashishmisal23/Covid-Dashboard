@@ -6,6 +6,7 @@ const SearchBar = ({ onSelectCountry, onSelectingDateRange }) => {
     const [countries, setCountries] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredCountries, setFilteredCountries] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState('usa');
 
 
     useEffect(() => {
@@ -38,6 +39,7 @@ const SearchBar = ({ onSelectCountry, onSelectingDateRange }) => {
         setSearchTerm('');
         setFilteredCountries([]);
         console.log('Selected country:', country.name.common);
+        setSelectedCountry(country.name.common)
         onSelectCountry(country.name.common)
 
     };

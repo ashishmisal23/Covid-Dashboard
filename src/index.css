@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 
-
 .charts-container {
     display: inline-flex;
     width: 90vw;
@@ -25,28 +24,19 @@
     min-width: 40vw;
 }
 
-.msg {
-    font-size: larger;
-    font-weight: 600;
-    color: red;
-    animation-name: anime1;
-    animation-duration: 4s;
+.loading {
+    min-width: 40vw;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-@keyframes anime1 {
-    0% {
-        color: red;
-    }
+.count-container{
 
-    25% {
-        color: yellow;
-    }
+}
 
-    50% {
-        color: blue;
-    }
-
-    100% {
-        color: green;
-    }
+.count{
+    
 }

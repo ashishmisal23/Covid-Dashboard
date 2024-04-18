@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
+import SyncLoader from 'react-spinners/SyncLoader';
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -9,8 +10,14 @@ const Chart = ({ data, loading }) => {
         animationEnabled: true,
         backgroundColor: "transparent",
         title: {
+            text: "Line Chart",
             margin: 25,
             padding: 4,
+            verticalAlign: "top",
+            horizontalAlign: "left",
+            fontSize: 16,
+            fontFamily: "arial",
+            fontWeight: "bold"
         },
         toolTip: {
             shared: true
@@ -117,11 +124,17 @@ const Chart = ({ data, loading }) => {
                 <CanvasJSChart options={chartData} />
             </>
         ) : (
-            <>
-                <div className="max-w-56 align-middle justify-center flex min-h-56">
-                    <h2 className='msg'>Data is loading..</h2>
+
+            <div className="loading">
+                <div>
+                    <SyncLoader
+                        color="#ff0000"
+                        loading
+                        size={20}
+                    />
                 </div>
-            </>
+            </div>
+
         )
     );
 };
