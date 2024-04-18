@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const SearchDates = ({ onSearch }) => {
     const [startDate, setStartDate] = useState('');
@@ -13,24 +14,35 @@ const SearchDates = ({ onSearch }) => {
     };
 
     const handleSearch = () => {
-        onSearch(startDate, endDate);
+        if (startDate && endDate && startDate <= endDate) {
+            onSearch(startDate, endDate);
+        } else {
+            toast("End date must be greater than start date");
+        }
+    };
+
+    const handleEndDateBlur = () => {
+        // Trigger search when the user finishes selecting the end date
+        handleSearch();
     };
 
     return (
-        <div>
+        <div className='dates-container'>
             <input
                 type="date"
                 value={startDate}
                 onChange={handleStartDateChange}
-                placeholder="Start Date"
+                min={new Date(Date.now() - 1500 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)}
+                max={new Date().toJSON().slice(0, 10)}
             />
             <input
                 type="date"
                 value={endDate}
                 onChange={handleEndDateChange}
-                placeholder="End Date"
+                onBlur={handleEndDateBlur}
+                min={new Date(Date.now() - 1500 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)}
+                max={new Date().toJSON().slice(0, 10)}
             />
-            <button onClick={handleSearch}>Search</button>
         </div>
     );
 };

@@ -6,9 +6,12 @@ import Navbar from './Navbar';
 import Chart from './Chart';
 import PieChart from './PieChart ';
 import Count from './Count';
+import PropagateLoader from 'react-spinners/PropagateLoader'
+
+
 
 const Dashboard = () => {
-    const [country, setCountry] = useState('');
+    const [country, setCountry] = useState('usa');
     const [days, setDays] = useState(1500);
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
@@ -64,31 +67,40 @@ const Dashboard = () => {
     };
 
     return (
-        <div className='ml-20 mr-20'>
-            <Navbar />
+        <div className='container'>
+
+            <Navbar selectedCountry={country} />
             <SearchBar
                 onSelectCountry={(selectedCountry) => setCountry(selectedCountry)}
                 onSelectingDateRange={(startDate, endDate) => { calculateDays(startDate, endDate) }}
             />
 
-            {!loading ? (
-                <div className="count-container">
-                    <Count data={newData2} />
+            {loading ? (
+                <div className="loading">
+                    <PropagateLoader
+                        color="#ff6300"
+                        loading
+                    />
                 </div>
+
             ) : (
-                <div className="count-container">Loading...</div>
+                <>
+                    <div className="count-container">
+                        <Count data={newData2} />
+                    </div>
+
+
+
+                    <div className='chart-container'>
+                        <div className="max-w-36 chart">
+                            <Chart data={data} loading={loading} />
+                        </div>
+                        <div className="max-w-36 chart">
+                            <PieChart data={data} loading={loading} />
+                        </div>
+                    </div>
+                </>
             )}
-
-
-            <div className='flex flex-row flex-auto	 gap-2 align-middle w-full max-w-screen-2xl'>
-                <div className="max-w-36 chart">
-                    <Chart data={data} loading={loading} />
-                </div>
-                <div className="max-w-36 chart">
-                    <PieChart data={data} loading={loading} />
-                </div>
-            </div>
-
 
         </div>
     );

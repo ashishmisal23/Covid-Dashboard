@@ -25,7 +25,7 @@ const Chart = ({ data, loading }) => {
         axisY: {
             title: "Number of Cases (Millions)",
             labelFormatter: function (e) {
-                return (e.value * 100).toFixed(1);
+                return e.value.toFixed(1);
             },
             margin: 30,
             gridThickness: 0,

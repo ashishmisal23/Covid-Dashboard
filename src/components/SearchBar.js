@@ -4,10 +4,10 @@ import SearchDates from './SearchDates';
 
 const SearchBar = ({ onSelectCountry, onSelectingDateRange }) => {
     const [countries, setCountries] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
     const [filteredCountries, setFilteredCountries] = useState([]);
-    const [selectedCountry, setSelectedCountry] = useState('usa');
-
+    const [selectedCountry, setSelectedCountry] = useState('USA');
+    const [display, setDisplay] = useState('none');
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const fetchCountries = async () => {
@@ -17,7 +17,8 @@ const SearchBar = ({ onSelectCountry, onSelectingDateRange }) => {
                     return a.name.common.localeCompare(b.name.common);
                 });
                 setCountries(sortedCountries);
-                setFilteredCountries(sortedCountries);
+                const countryNames = sortedCountries.map(country => country.name.common);
+                setFilteredCountries(countryNames);
             } catch (error) {
                 console.error('Error fetching countries:', error);
             }
@@ -27,56 +28,72 @@ const SearchBar = ({ onSelectCountry, onSelectingDateRange }) => {
     }, []);
 
     const handleSearch = (e) => {
+        setSelectedCountry(e.target.value);
+        setSearchTerm(e.target.value)
         const term = e.target.value.toLowerCase();
-        setSearchTerm(term);
         const filtered = countries.filter((country) =>
             country?.name.common.toLowerCase().includes(term)
         );
-        setFilteredCountries(filtered);
+        const countryNames = filtered.map(country => country.name.common);
+        setFilteredCountries(countryNames);
     };
 
-    const handleSelectCountry = (country) => {
-        setSearchTerm('');
-        setFilteredCountries([]);
-        console.log('Selected country:', country.name.common);
-        setSelectedCountry(country.name.common)
-        onSelectCountry(country.name.common)
 
+    const handleSelectCountry = (countryName) => {
+        setDisplay('none');
+        setSelectedCountry(countryName);
+        onSelectCountry(countryName);
+        setSearchTerm(countryName)
     };
+
 
     const handleDateRangeSearch = (startDate, endDate) => {
-        onSelectingDateRange(startDate, endDate)
+        onSelectingDateRange(startDate, endDate);
     };
 
     return (
-        <>
-            <div className='flex flex-row gap-10 justify-between max-w-screen p-2'>
+        <div className='search-bar'>
+            <div className="search-container">
                 <input
                     type="text"
-                    placeholder="Search Country..."
+                    placeholder={"Search Country..."}
                     value={searchTerm}
-                    onChange={handleSearch}
-                >
-                </input>
+                    onChange={(e) => { handleSearch(e) }}
+                    onKeyDownCapture={(e) => {
+                        if (e.key === "Enter") {
+                            setDisplay('block')
+                            handleSearch(e);
+                        }
+                    }}
+                />
 
-                <SearchDates onSearch={handleDateRangeSearch} />
-            </div>
-            <div className=" flex text-center max-h-16 overflow-hidden border p-2 pb-3">
-                {filteredCountries.length > 0 && (
-                    <ul className='flex flex-row flex-nowrap gap-3'>
-                        {filteredCountries.map((country) => (
+                <div className="dropdown">
+                    <button
+                        className="dropbtn"
+                        onClick={() => { setDisplay('block') }}>
+                        &#9660;
+                    </button>
+                    <ul className={`dropdown-content ${display}`}
+                        onMouseLeave={() => { setDisplay('none') }}
+
+                    >
+                        {filteredCountries.map((countryName) => (
                             <li
-                                key={country.cca2}
-                                onClick={() => handleSelectCountry(country)}
-                                className='p-1 border text-center min-w-max '
+                                key={countryName}
+                                onClick={() => handleSelectCountry(countryName)}
+                                className='p-1 border text-center min-w-max'
                             >
-                                {country.name.common}
+                                {countryName}
                             </li>
                         ))}
                     </ul>
-                )}
+                </div>
             </div>
-        </>
+
+            <div className="country-display">{selectedCountry}</div>
+
+            <SearchDates onSearch={handleDateRangeSearch} />
+        </div>
     );
 };
 

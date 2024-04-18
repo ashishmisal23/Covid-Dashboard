@@ -1,12 +1,13 @@
 import React from 'react'
 
-const Navbar = () => {
+const Navbar = ({selectedCountry}) => {
 
 
     return (
-        <div className='pt-5 pb-5'>
-            <h2 className='text-black text-3xl'>COVID-19 and Population Dashboard</h2>
-        </div >
+        <nav className='nav'>
+            <h2 className='nav-heading'>Covid-19 and Population Dashboard</h2>
+            
+        </nav >
     )
 }
 

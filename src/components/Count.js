@@ -6,13 +6,17 @@ const Count = ({ data }) => {
     return (
         <>
             <div className="count">
-                totalCases:{totalCases?.toFixed(1)}
+                <span className='count-heading' id='cases'>Total Cases</span>
+                <span className='count-number'>{totalCases?.toFixed(1)} M</span>
+
             </div>
             <div className="count">
-                totalDeaths:{totalDeaths?.toFixed(1)}
+                <span className='count-heading' id='deaths'>Deaths</span>
+                <span className='count-number'>{totalDeaths?.toFixed(1)} M</span>
             </div>
             <div className="count">
-                totalRecovered:{totalRecovered?.toFixed(1)}
+                <span className='count-heading' id='recovered'>Recoveries</span>
+                <span className='count-number'>{totalRecovered?.toFixed(1)} M</span>
             </div>
         </>
     )

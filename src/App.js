@@ -1,12 +1,14 @@
 import React from 'react'
 import Dashboard from './components/Dashboard'
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
-    <div className='bg-cyan-100 min-h-screen'>
-      <Dashboard></Dashboard>
-    </div>
+    <>
+      <ToastContainer />
+      <Dashboard />
+    </>
   )
 }
 
