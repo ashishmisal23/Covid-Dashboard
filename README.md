@@ -1,8 +1,5 @@
 ### Covid-19 and Population Dashboard
 
-![Project Image](https://your-image-url.com)
-
-> A dashboard application for tracking Covid-19 statistics and population data.
 
 ---
 
