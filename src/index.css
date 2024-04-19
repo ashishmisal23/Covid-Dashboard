@@ -245,7 +245,7 @@ input[type='date']:focus::placeholder {
 }
 
 #deaths {
-    background-color: rgba(255, 98, 98, 0.709);
+    background-color: rgb(255, 34, 34);
 }
 
 #recovered {
