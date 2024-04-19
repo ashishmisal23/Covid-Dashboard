@@ -1,6 +1,8 @@
 ### Covid-19 and Population Dashboard
 
 
+> A dashboard application for tracking Covid-19 statistics and population data.
+
 ---
 
 ## Table of Contents
