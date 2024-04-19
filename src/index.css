@@ -241,15 +241,15 @@ input[type='date']:focus::placeholder {
 
 
 #cases {
-    background-color: blue;
+    background-color: rgb(86, 86, 255);
 }
 
 #deaths {
-    background-color: red;
+    background-color: rgba(255, 98, 98, 0.709);
 }
 
 #recovered {
-    background-color: green;
+    background-color: rgb(78, 202, 78);
 }
 
 
