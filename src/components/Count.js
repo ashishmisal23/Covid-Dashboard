@@ -15,7 +15,8 @@ const Count = ({ data }) => {
                 <span className='count-number'>{totalDeaths?.toFixed(1)} M</span>
             </div>
             <div className="count">
-                <span className='count-heading' id='recovered'>Recoveries</span>
+                <span className='count-heading' id='recovered'>Recoveries
+                </span>
                 <span className='count-number'>{totalRecovered?.toFixed(1)} M</span>
             </div>
         </>

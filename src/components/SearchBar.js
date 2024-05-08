@@ -90,7 +90,8 @@ const SearchBar = ({ onSelectCountry, onSelectingDateRange }) => {
                 </div>
             </div>
 
-            <div className="country-display">{selectedCountry}</div>
+
+
 
             <SearchDates onSearch={handleDateRangeSearch} />
         </div>
